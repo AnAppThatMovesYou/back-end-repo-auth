@@ -78,9 +78,22 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+//    @Override
+//    public String createUser(User newUser) {
+//        UserRole userRole = userRoleService.getRole("ROLE_User");
+//        newUser.setUserRole(userRole);
+//        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+//        if (userRepository.save(newUser) != null) {
+//
+//            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
+//            return jwtUtil.generateToken(userDetails);
+//        }
+//        return null;
+//    }
+
     @Override
     public String createUser(User newUser) {
-        UserRole userRole = userRoleService.getRole("ROLE_User");
+        UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
         newUser.setUserRole(userRole);
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
         if (userRepository.save(newUser) != null) {
@@ -90,18 +103,6 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-
-//    @Override
-//    public String createUser(User newUser) {
-//        UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
-//        newUser.setUserRole(userRole);
-//        if (userRepository.save(newUser) != null) {
-//
-//            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
-//            return jwtUtil.generateToken(userDetails);
-//        }
-//        return null;
-//    }
 
     @Override
     public String login(User user) {

@@ -1,6 +1,7 @@
 package com.example.springbootmonolith.service;
 
 import com.example.springbootmonolith.models.User;
+import com.example.springbootmonolith.models.UserProfile;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
