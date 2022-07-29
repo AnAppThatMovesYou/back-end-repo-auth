@@ -1,5 +1,6 @@
 package com.example.springbootmonolith.service;
 
+import com.example.springbootmonolith.models.Blogs;
 import com.example.springbootmonolith.models.User;
 import com.example.springbootmonolith.models.UserProfile;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,10 @@ public interface UserService extends UserDetailsService {
 
     public String login(User user);
 
-    User addBlog(String username, Long blogId);
+//    public Blogs createBlog(String username, Blogs blog);
+//    public User getBlogUser(String username);
+
+
 
     public HttpStatus deleteById(Long userId);
 

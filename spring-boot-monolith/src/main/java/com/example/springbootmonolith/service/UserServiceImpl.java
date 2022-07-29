@@ -115,14 +115,21 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    @Override
-    public User addBlog(String username, Long blogId) {
-        Blogs blog = blogRepository.findById(blogId).get();
-        User user = getUser(username);
-        user.setUserBlogs(blog);
 
-        return userRepository.save(user);
-    }
+//
+//    @Override
+//    public User getBlogUser(String username) {
+//        return userRepository.findByUsername(username);
+//    }
+
+//    @Override
+//    public User addBlog(String username, Long blogId) {
+//        Blogs blog = blogRepository.findById(blogId).get();
+//        User user = getUser(username);
+//        user.setUserBlogs(blog);
+//
+//        return userRepository.save(user);
+//    }
 
     @Override
     public HttpStatus deleteById(Long userId) {
