@@ -36,7 +36,7 @@ public class User {
     @JoinColumn(name = "user_role_id", nullable = false)
     private UserRole userRole;
 
-    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     private List<Blogs> blogs;
 
 //    public void addBlog(Blogs blog){
