@@ -1,6 +1,7 @@
 package com.example.springbootmonolith.config;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -32,7 +33,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-        final String requestTokenHeader = request.getHeader("Authorization");
+        final String requestTokenHeader = request.getHeader("authorization");
 
         String username = null;
         String jwtToken = null;
@@ -46,6 +47,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 System.out.println("JWT Token has expired");
             }
         } else {
+            Enumeration<String> headerNames = request.getHeaderNames();
+            if (headerNames != null) {
+                while (headerNames.hasMoreElements()) {
+                    System.out.println("Header: " + request.getHeader(headerNames.nextElement()));
+                }
+            }
+//            System.out.println(request.getHeaderNames());
+//            System.out.println(requestTokenHeader);
+            System.out.println(jwtToken);
             logger.warn("JWT Token does not begin with Bearer String");
         }
 
