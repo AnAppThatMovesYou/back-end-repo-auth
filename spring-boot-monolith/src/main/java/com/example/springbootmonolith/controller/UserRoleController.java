@@ -12,11 +12,13 @@ public class UserRoleController {
     @Autowired
     UserRoleService roleService;
 
+    @CrossOrigin
     @GetMapping("/{rolename}")
     public UserRole getRole(@PathVariable String rolename) {
         return roleService.getRole(rolename);
     }
 
+    @CrossOrigin
     @PostMapping
     public UserRole createRole(@RequestBody UserRole role) {
         return roleService.createRole(role);
