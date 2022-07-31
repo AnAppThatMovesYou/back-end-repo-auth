@@ -52,9 +52,9 @@ public class BlogServiceImpl implements BlogService{
         return blogRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("blog","id",id));
     }
 
+
     @Override
     public Blogs createBlog(String username, Blogs blog) {
-        System.out.println(blog.getTitle());
         User user = userRepository.findByUsername(username);
         blog.setUser(user);
         return blogRepository.save(blog);

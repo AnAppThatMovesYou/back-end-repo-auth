@@ -84,7 +84,8 @@ public class Blogs {
     private String imageUrl;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name="user_blog_id", nullable = false)
     private User user;
 
