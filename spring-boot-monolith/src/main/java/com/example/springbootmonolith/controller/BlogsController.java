@@ -20,22 +20,26 @@ public class BlogsController {
     @Autowired
     public BlogRepository blogRepository;
 
+    @CrossOrigin
     @GetMapping
     public List<Blogs> getAllBlogs() {
         return blogService.listBlogs();
     }
 
 
+    @CrossOrigin
     @GetMapping("/{blogId}")
     public Blogs getBlog(@PathVariable Long blogId) {
         return blogService.getBlog(blogId);
     }
 
+    @CrossOrigin
     @PostMapping("/{username}")
     public Blogs createBlog(@PathVariable String username, @RequestBody Blogs blog) {
         return blogService.createBlog(username,blog);
     }
 
+    @CrossOrigin
     @PutMapping("/{blogId}")
     public Blogs updateBlog(@PathVariable Long blogId, @RequestBody Blogs newBlog){
         //find blog with id
@@ -55,6 +59,7 @@ public class BlogsController {
         return existingBlog;
     }
 
+    @CrossOrigin
     @DeleteMapping("/{blogId}")
     public HttpStatus deleteBlog(@PathVariable Long blogId){
         blogRepository.deleteById(blogId);

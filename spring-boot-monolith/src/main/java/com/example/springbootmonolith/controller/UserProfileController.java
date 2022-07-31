@@ -12,11 +12,13 @@ public class UserProfileController {
     @Autowired
     UserProfileService userProfileService;
 
+    @CrossOrigin
     @GetMapping("/{username}")
     public UserProfile getUserProfile(@PathVariable String username) {
         return userProfileService.getUserProfile(username);
     }
 
+    @CrossOrigin
     @PostMapping("/{username}")
     public UserProfile createUserProfile(@PathVariable String username, @RequestBody UserProfile userProfile) {
         return userProfileService.createUserProfile(username, userProfile);

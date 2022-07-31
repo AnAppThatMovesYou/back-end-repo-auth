@@ -22,23 +22,28 @@ public class UserController {
     @Autowired
     BlogService blogService;
 
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
         return ResponseEntity.ok(new JwtResponse(userService.login(user)));
     }
 
     //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @CrossOrigin
     @GetMapping("/user/list")
     public Iterable<User> listUsers() {
         return userService.listUsers();
     }
 
+
+    @CrossOrigin
     @GetMapping("/user/{username}")
     public User getUser(@PathVariable String username) {
         return userService.getUser(username);
     }
 
 
+    @CrossOrigin
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody User newUser) {
         return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
@@ -48,11 +53,13 @@ public class UserController {
 //    public User addBlog(@PathVariable String username, @PathVariable Long blogId){
 //        return userService.addBlog(username, blogId);
 //    }
+    @CrossOrigin
     @DeleteMapping("/user/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId) {
         return userService.deleteById(userId);
     }
 
+    @CrossOrigin
     @GetMapping("/hello")
     public String helloWorld() {
         return "Hello World!!";
