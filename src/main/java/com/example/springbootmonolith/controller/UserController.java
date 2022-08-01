@@ -1,23 +1,27 @@
 package com.example.springbootmonolith.controller;
 
-import com.example.springbootmonolith.config.JwtUtil;
-import com.example.springbootmonolith.models.Blogs;
 import com.example.springbootmonolith.models.JwtResponse;
 import com.example.springbootmonolith.models.User;
+import com.example.springbootmonolith.repositories.UserRepository;
 import com.example.springbootmonolith.service.BlogService;
 import com.example.springbootmonolith.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     BlogService blogService;
@@ -45,9 +49,21 @@ public class UserController {
 
     @CrossOrigin
     @PostMapping("/signup")
-    public ResponseEntity<?> createUser(@RequestBody User newUser) {
-        return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
+//    public ResponseEntity<?> createUser(@RequestBody User newUser) {
+//        return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
+//    }
+    public ResponseEntity<?> signUp(@RequestBody User user) throws Exception {
+        Optional<User> usernameEntry = Optional.ofNullable(userRepository.findByUsername(user.getUsername()));
+        if (usernameEntry.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exists!");
+        }else { // filter as you need in this method
+//            userRepository.save(user);
+//            System.out.println("New user submission!");
+            return ResponseEntity.ok(new JwtResponse(userService.createUser(user)));
+        }
     }
+
+
 
     //    @PutMapping("/user/{username}/{blogId}")
 //    public User addBlog(@PathVariable String username, @PathVariable Long blogId){
