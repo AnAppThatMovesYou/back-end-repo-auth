@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/blogs").allowedOrigins("http://localhost:3000","https://movingco.herokuapp.com");
+                registry.addMapping("/blogs").allowedOrigins("https://movingco.netlify.app/");
             }
         };
     }
