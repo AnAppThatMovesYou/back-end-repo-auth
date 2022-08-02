@@ -74,13 +74,14 @@ public class Blogs {
     @Column(name = "summary")
     private String summary;
 
-    @Column
+    @Column(columnDefinition = "text")
+//    @Lob
     private String content;
 
     @Column
     private String category;
 
-    @Column
+    @Column(columnDefinition = "text")
     private String imageUrl;
 
 
