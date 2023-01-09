@@ -103,6 +103,7 @@ public class Blogs {
 
     }
 
+
 //    public Blogs(String title, String summary, String content, String category, String imageUrl, User user) {
 //        this.title = title;
 //        this.summary = summary;
@@ -111,4 +112,7 @@ public class Blogs {
 //        this.imageUrl = imageUrl;
 //        this.user = user;
 //    }
+
+    @OneToMany(mappedBy = "blogs", cascade = CascadeType.ALL)
+    private List<Comments> comments;
 }

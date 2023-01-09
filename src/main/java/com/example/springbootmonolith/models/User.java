@@ -39,6 +39,9 @@ public class User {
     @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     private List<Blogs> blogs;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comments> comments;
+
 //    public void addBlog(Blogs blog){
 //        if(blogs == null)
 //            blogs = new ArrayList<>();
